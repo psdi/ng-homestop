@@ -1,1 +1,15 @@
-Hello
+<div class="homestop-wrapper">
+  <div class="sidebar-wrapper">
+    <ul>
+      <li class="title">homestop</li>
+      <li><a routerLink="/expenses" routerLinkActive="active" ariaCurrentWhenActive="page">Expenses</a></li>
+      <li><a>Graph</a></li>
+      <li><a>Standing Orders</a></li>
+      <li><a>Export</a></li>
+    </ul>
+  </div>
+
+  <div class="content-wrapper">
+    <router-outlet></router-outlet>
+  </div>
+</div>

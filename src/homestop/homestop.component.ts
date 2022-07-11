@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./homestop.component.scss']
 })
 export class HomestopComponent {
-  title = 'ng-homestop';
+  title = 'homestop';
 }

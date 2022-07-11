@@ -1,0 +1,50 @@
+.homestop-wrapper {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+
+  > * {
+    height: 100vh;
+    padding: 1em 2em;
+  }
+}
+
+.sidebar-wrapper {
+  width: 15em;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.content-wrapper {
+  width: 60em;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    &.title {
+      font-weight: 700;
+      font-size: 18pt;
+    }
+
+    a {
+      color: black;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+
+    > a.active {
+      color: orange;
+      border-bottom: 1px solid orange;
+    }
+
+    > a:not(.active):hover {
+      border-bottom: 1px solid rgb(212, 212, 212);
+    }
+
+    height: 2em;
+  }
+}
