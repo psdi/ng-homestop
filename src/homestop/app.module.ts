@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HomestopComponent } from './homestop.component';
-import { ExpensesComponent } from './expenses/expenses.component';
+import { FinancesComponent } from './finances/finances.component';
 
 @NgModule({
   declarations: [
     HomestopComponent,
-    ExpensesComponent,
+    FinancesComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [HomestopComponent]

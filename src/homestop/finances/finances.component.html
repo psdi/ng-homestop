@@ -1,0 +1,8 @@
+<div>
+  <div *ngFor="let finance of finances$ | async; index as i">
+    {{ finance.id }}
+    {{ finance.date }}
+    {{ finance.description }}
+    {{ finance.amount }}
+  </div>
+</div>
