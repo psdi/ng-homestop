@@ -7,6 +7,9 @@ import * as _moment from 'moment';
 import { Moment } from 'moment';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { FormControl } from '@angular/forms';
+
+const moment = _moment;
 
 export const MY_FORMATS = {
   parse: {
@@ -31,20 +34,33 @@ export const MY_FORMATS = {
 export class FinancesComponent implements OnInit {
 
   finances$: Observable<Finance[]> = new Observable();
+  date = new FormControl(moment());
+  dateStr: string = '';
 
   constructor(private finances: FinanceService) { }
 
   ngOnInit(): void {
-    this.finances.loadFinances();
+    this.update();
     this.finances$ = this.finances.getFinances();
   }
 
-  selectMonth(date: Moment, datepicker: MatDatepicker<Moment>): void {
-    this.finances.loadFinances({
-      month: date.month() + 1, // months start at 0
-      year: date.year(),
-    });
+  selectMonth(newDate: Moment, datepicker: MatDatepicker<Moment>): void {
+    const ctrlValue = this.date.value!;
+    ctrlValue.month(newDate.month());
+    ctrlValue.year(newDate.year());
+    this.date.setValue(ctrlValue);
+    this.update();
+
     datepicker.close();
+  }
+
+  update(): void {
+    const ctrlValue = this.date.value!;
+    this.finances.loadFinances({
+      month: ctrlValue.month() + 1, // months start at 0
+      year: ctrlValue.year(),
+    });
+    this.dateStr = ctrlValue.format('MMMM YYYY');
   }
 
 }
