@@ -26,11 +26,11 @@
       <mat-icon>edit</mat-icon>
     </button>
 
-    <button mat-icon-button mat-raised-button>
+    <button mat-icon-button mat-raised-button (click)="toggleMonth(-1)">
       <mat-icon>chevron_left</mat-icon>
     </button>
 
-    <button mat-icon-button mat-raised-button>
+    <button mat-icon-button mat-raised-button (click)="toggleMonth(1)">
       <mat-icon>chevron_right</mat-icon>
     </button>
   </div>

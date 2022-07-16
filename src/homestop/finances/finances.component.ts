@@ -62,6 +62,13 @@ export class FinancesComponent implements OnInit {
     datepicker.close();
   }
 
+  toggleMonth(num: number): void {
+    const ctrlValue = this.date.value!;
+    ctrlValue.add(num, 'months');
+    this.date.setValue(ctrlValue);
+    this.update();
+  }
+
   update(): void {
     const ctrlValue = this.date.value!;
     this.dataSource.loadFinances({
