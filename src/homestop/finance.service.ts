@@ -14,8 +14,7 @@ export class FinanceService {
 
   constructor(private http: HttpClient) { }
 
-  loadFinances(params: { [key: string]: any} = {}): void {
-
+  findFinances(params: { [key: string]: any} = {}) {
     let hp = new HttpParams();
     Object.keys(params).forEach((key) => {
       hp = hp.append(key, params[key]);
@@ -25,13 +24,7 @@ export class FinanceService {
       params: hp,
     };
 
-    this.http.get<Finance[]>('/api/finances', requestOptions).subscribe(
-      data => {
-        this.dataStore.finances = data;
-        this._finances.next(Object.assign({}, this.dataStore).finances);
-      },
-      error => console.log('Could not load finances')
-    );
+    return this.http.get<Finance[]>('/api/finances', requestOptions);
   }
 
   getFinances(): Observable<Finance[]> {
