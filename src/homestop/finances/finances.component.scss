@@ -1,8 +1,31 @@
-.control-bar {
+div[class^="control-bar"] {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   height: 5em;
+}
+
+.control-bar {
+  justify-content: space-between;
+}
+
+.control-bar-left {
+  justify-content: flex-start;
+}
+
+.control-bar-right {
+  justify-content: flex-end;
+
+  > * {
+    margin: 0 0.25em;
+  }
+
+  button {
+    width: 2.3em;
+    height: 2.3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 h2.date-string {
@@ -16,4 +39,17 @@ mat-form-field.calendar {
   visibility: hidden;
   margin: 0;
   padding: 0;
+}
+
+.finance-table {
+  width: 100%;
+
+  .day-cell {
+    vertical-align:top;
+    padding-top: 1em;
+  }
+
+  .bold {
+    font-weight: 700;
+  }
 }

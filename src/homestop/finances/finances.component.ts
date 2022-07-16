@@ -8,6 +8,7 @@ import { Moment } from 'moment';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { FormControl } from '@angular/forms';
+import { FinancesDataSource } from './finances.datasource';
 
 const moment = _moment;
 
@@ -37,11 +38,18 @@ export class FinancesComponent implements OnInit {
   date = new FormControl(moment());
   dateStr: string = '';
 
-  constructor(private finances: FinanceService) { }
+  // table
+  dataSource: FinancesDataSource;
+  displayedColumns: string[] = ['day', 'description', 'category', 'amount'];
+
+  spanList: { [key: number]: number } = {};
+
+  constructor(private finances: FinanceService) {
+    this.dataSource = new FinancesDataSource(this.finances);
+  }
 
   ngOnInit(): void {
     this.update();
-    this.finances$ = this.finances.getFinances();
   }
 
   selectMonth(newDate: Moment, datepicker: MatDatepicker<Moment>): void {
@@ -56,11 +64,36 @@ export class FinancesComponent implements OnInit {
 
   update(): void {
     const ctrlValue = this.date.value!;
-    this.finances.loadFinances({
+    this.dataSource.loadFinances({
       month: ctrlValue.month() + 1, // months start at 0
       year: ctrlValue.year(),
     });
+
     this.dateStr = ctrlValue.format('MMMM YYYY');
   }
 
+  getDay(date: string) {
+    return (moment(date, 'YYYY-MM-DD HH:mm:ss')).date();
+  }
+
+  format(amount: number, is_expense: boolean = false) {
+    const formatter = new Intl.NumberFormat('de-DE',  {
+      style: 'currency',
+      currency: 'EUR',
+    });
+
+    return formatter.format(is_expense ? amount * -1 : amount);
+  }
+
+  getRowSpan(i: number) {
+    if (!Object.keys(this.spanList).length) {
+      this.spanList = this.dataSource.getSpanList();
+    }
+
+    return this.spanList.hasOwnProperty(i) ? this.spanList[i] : 0;
+  }
+
+  getNet(): number {
+    return this.dataSource.getNet();
+  }
 }
