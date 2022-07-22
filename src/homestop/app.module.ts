@@ -8,11 +8,13 @@ import { FinancesComponent } from './finances/finances.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgMaterialModule } from './ng-material.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CategoryListComponent } from './category-list/category-list.component';
 
 @NgModule({
   declarations: [
     HomestopComponent,
     FinancesComponent,
+    CategoryListComponent,
   ],
   imports: [
     BrowserModule,

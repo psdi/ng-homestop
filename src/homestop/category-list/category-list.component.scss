@@ -1,0 +1,18 @@
+.category-table {
+  width: 60%;
+
+  .actions-cell {
+    text-align: right;
+
+    mat-icon {
+      cursor: pointer;
+      opacity: 0.4;
+      transition: opacity 100ms ease;
+      color: orange;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
