@@ -42,11 +42,18 @@ mat-form-field.calendar {
 }
 
 .finance-table {
-  width: 100%;
+  width: 95%;
 
   .day-cell {
     vertical-align:top;
-    padding-top: 1em;
+    padding-top: 0.75em;
+    font-weight: 700;
+    font-size: 12pt;
+    width: 4.5em;
+  }
+
+  .amount-cell {
+    text-align: right;
   }
 
   .bold {
